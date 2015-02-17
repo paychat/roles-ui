@@ -22,13 +22,11 @@ module RolesUi
         when Array
           RolesUi.admin_roles.each do |role|
             role = RolesUi::Role.find_by_name(role)
-            return false unless role
-            return true if has_role?(role)
+            has_role?(role) ? return true : return false
           end
         when Symbol
           role = RolesUi::Role.find_by_name(RolesUi.admin_roles)
-          return false unless role
-          has_role?(role)
+            has_role?(role) ? return true : return false
         else
           return false
         end
