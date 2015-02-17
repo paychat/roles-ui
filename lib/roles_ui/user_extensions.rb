@@ -22,15 +22,15 @@ module RolesUi
         when Array
           RolesUi.admin_roles.each do |role|
             role = RolesUi::Role.find_by_name(role)
-            raise WrongAdminRolesArgument unless role
+            return false unless role
             return true if has_role?(role)
           end
         when Symbol
           role = RolesUi::Role.find_by_name(RolesUi.admin_roles)
-          raise WrongAdminRolesArgument unless role
+          return false unless role
           has_role?(role)
         else
-          raise WrongAdminRolesArgument
+          return false
         end
       else
         super
